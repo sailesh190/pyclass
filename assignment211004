@@ -1,0 +1,59 @@
+"""
+paragraph=
+   Growing up, they remember a home filled with state-of-the-art technology — like an early digital clock and some of the first home computers. 
+   They came to StoryCorps to reflect on their unforgettable childhood and their father’s colossal personality.
+"""
+"""
+1) How many words in the paragraph : example count of the words
+2) How many unique words: 
+3) How many characters:
+4) Need count of characters
+5) I need count of special characters
+6) Print all the special characters
+"""
+#How many words in the paragraph
+str1= "Growing up, they remember a home filled with state-of-the-art technology — like an early digital clock and some of the first home computers. They came to StoryCorps to reflect on their unforgettable childhood and their father’s colossal personality."
+word_list= str1.split()
+number_of_words= len(word_list)
+print(number_of_words)
+#How many unique words
+str1="Growing up, they remember a home filled with state-of-the-art technology — like an early digital clock and some of the first home computers. They came to StoryCorps to reflect on their unforgettable childhood and their father’s colossal personality."
+wordlist=str1.split(' ')
+unique_words= set(str1.split(' '))
+number_of_unique_words=len(unique_words)
+print(number_of_unique_words)
+#How many characters/count of characters
+data1=Str1.replace(" ","")
+number_of_characters=len(data1)
+print(number_of_characters)
+#count of special characters, not working as expected right now
+def count_special_character(string): 
+  
+    special_char= 0
+   
+    for i in range(0, len(string)):  
+          
+        ch = string[i]
+  
+        if (string[i].isalpha()):  
+            continue
+        
+        elif (string[i].isdigit()):
+            continue
+            
+        else: 
+            special_char += 1
+            
+            
+    if special_char >= 1:    
+        print("String contains {} Special Character/s ".format(special_char))  
+    else:
+        print("There are no Special Characters in this String.")
+  
+if __name__ == '__main__' : 
+    string = "Growing up, they remember a home filled with state-of-the-art technology — like an early digital clock and some of the first home computers. They came to StoryCorps to reflect on their unforgettable childhood and their father’s colossal personality."
+    count_special_character(string)
+#Print all the special characters
+str1 = "Growing up, they remember a home filled with state-of-the-art technology — like an early digital clock and some of the first home computers. They came to StoryCorps to reflect on their unforgettable childhood and their father’s colossal personality."
+new_str1= ''.join (char for char in str1 if not char.isalnum())
+print(new_str1)
