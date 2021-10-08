@@ -8,31 +8,13 @@ cur = conn.cursor()
 
 entries = ["name", "email", "phone", "city", "state", "country"]
 
-# fetch all table names
+temp_str = ", ".join([item + " varchar(255)" for item in entries])
 
-sql_statment = "select * from information_schema.tables where table_schema = 'pyclass';"
+sql_statment = f"create table if not exists pyclass.address_book_di (id serial primary key, {temp_str});"
 
 cur.execute(sql_statment)
 
 conn.commit()
-
-table_name_index = [item.name for item in cur.description].index('table_name')
-
-table_names = [item[table_name_index] for item in cur.fetchall()]
-
-# if there is not table called "address_book_di" then just create one
-
-if 'address_book_di' not in table_names:
-    
-    # define id to allow duplicate entries
-    
-    temp_str = ", ".join([item + " varchar(255)" for item in entries])
-    
-    sql_statment = f"create table pyclass.address_book_di (id SERIAL primary key, {temp_str});"
-    
-    cur.execute(sql_statment)
-    
-    conn.commit()
 
 
 def search_fun(entries):
