@@ -171,8 +171,6 @@ while if_continue.upper() == "Y":
 
             while edit_entry.lower() not in entries:
                 
-                temp_str = " ".join(entries).upper()
-
                 edit_entry = input(f"You entered wrong entry, please enter {temp_str}:")
 
             edit_value = input("Please enter the new value for this entry: ")
