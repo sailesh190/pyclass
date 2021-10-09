@@ -19,8 +19,8 @@ publication_list = response.json()["response"]["docs"]
 #1)
 
 conn = psycopg2.connect(
-    host='ec2-52-204-213-254.compute-1.amazonaws.com', port=5432, user='nzidckngibagnw', dbname='d7guhevmgagv5q',
-    password='a1f9301229bb8f7dac06d8c29c7c75b3ffac102f60a58e71e1687757a0bce690')
+    host='ec2-54-161-189-150.compute-1.amazonaws.com', port=5432, user='rxxmjyumuyvrqg', dbname='d10h6jfmgo6dgj',
+    password='4909dea8d4520c01eb1bceb3872a488bf59ab9c2639c5bec6b9c5dd7edf862e0')
 
 cur = conn.cursor()
 
