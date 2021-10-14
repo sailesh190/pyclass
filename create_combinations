@@ -1,0 +1,8 @@
+#generate a lot of lists from given list a = [1,2,3,4,5,6,7]
+from itertools import combinations
+
+input = ['1', '2', '3', '4', '5', '6', '7']
+
+output = sum([list(map(list, combinations(input, i))) for i in range(len(input) + 1)], [])
+
+print(output)
