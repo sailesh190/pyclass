@@ -1,22 +1,8 @@
 import psycopg2
 
-conn = psycopg2.connect(
-    host='ec2-54-161-189-150.compute-1.amazonaws.com', port=5432, user='rxxmjyumuyvrqg', dbname='d10h6jfmgo6dgj',
-    password='4909dea8d4520c01eb1bceb3872a488bf59ab9c2639c5bec6b9c5dd7edf862e0')
-
-cur = conn.cursor()
-
 entries = ["name", "email", "phone", "city", "state", "country"]
 
-temp_str = ", ".join([item + " varchar(255)" for item in entries])
-
-sql_statment = f"create table if not exists pyclass.address_book_di (id serial primary key, {temp_str});"
-
-cur.execute(sql_statment)
-
-conn.commit()
-
-class contact:
+class Contact:
     def __init__(self):
         self.name = input("Please enter name:")
         self.email = input("Please enter email:")
@@ -35,21 +21,56 @@ class contact:
         while not self.phone.isnumeric():
             self.phone = input("Your phone is invalid, please enter again: ")
 
+class Dbconnect(Contact):
+    
+    def __init__(self, host, port, user, dbname, password):
+        self.host = host
+        self.port = port
+        self.user = user
+        self.dbname = dbname
+        self.password = password
+    
+    def get_connect(self):
+        self.conn = psycopg2.connect(
+            host = self.host,
+            port = self.port,
+            user = self.user,
+            dbname = self.dbname,
+            password = self.password
+        )
+        
+        self.cur = self.conn.cursor()
+        
+    def query(self, statement):
+        self.cur.execute(statement)
+        self.conn.commit()
+        
+    def create_statement(self, entries):
+        temp_str = ", ".join([item + " varchar(255)" for item in entries])
+        return(f"create table if not exists pyclass.address_book_di (id serial primary key, {temp_str});")
+        
+    def insert_statement(self, entries):
+        super().__init__()
+        temp_str_1 = ", ".join([item for item in entries])
+        temp_str_2 = ", ".join(["'" + vars(self)[item] + "'" for item in entries])
+        return(f"insert into pyclass.address_book_di ({temp_str_1}) values ({temp_str_2});")
+    
+
+    
+pyclass_connect = Dbconnect('ec2-54-161-189-150.compute-1.amazonaws.com',
+                            5432,
+                            'rxxmjyumuyvrqg',
+                            'd10h6jfmgo6dgj',
+                            '4909dea8d4520c01eb1bceb3872a488bf59ab9c2639c5bec6b9c5dd7edf862e0')
+
+pyclass_connect.get_connect()
+pyclass_connect.query(pyclass_connect.create_statement(entries))
+
 if_continue = "Y"
 
 while if_continue.upper() == "Y":
     
-    new_contact = contact()
-
-    temp_str_1 = ", ".join([item for item in vars(new_contact).keys()])
-
-    temp_str_2 = ", ".join(["'" + item + "'" for item in vars(new_contact).values()])
-
-    sql_statment = f"insert into pyclass.address_book_di ({temp_str_1}) values ({temp_str_2});"
-
-    cur.execute(sql_statment)
-
-    conn.commit()
+    pyclass_connect.query(pyclass_connect.insert_statement(entries))
 
     print("New contact added.")
     
