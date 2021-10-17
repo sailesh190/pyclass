@@ -1,0 +1,19 @@
+(base) C:\Users\Di\python\pyclass\hw_7_hierarchical_json>pytest --cov .
+================================================= test session starts =================================================
+platform win32 -- Python 3.7.6, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+rootdir: C:\Users\Di\python\pyclass\hw_7_hierarchical_json
+plugins: hypothesis-5.5.4, arraydiff-0.3, astropy-header-0.1.2, cov-2.12.1, doctestplus-0.5.0, mock-3.6.1, openfiles-0.4.0, remotedata-0.3.2
+collected 3 items
+
+hierarchical_json_test.py ...                                                                                    [100%]
+
+----------- coverage: platform win32, python 3.7.6-final-0 -----------
+Name                        Stmts   Miss  Cover
+-----------------------------------------------
+hierarchical_json.py           26      5    81%
+hierarchical_json_test.py      15      1    93%
+-----------------------------------------------
+TOTAL                          41      6    85%
+
+
+================================================== 3 passed in 0.12s ==================================================
