@@ -1,0 +1,31 @@
+<table border="1">
+    <thead>
+    <th>Name </th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>City</th>
+    <th>Add</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+
+    <tbody>
+    {%  for item in bookList  %}
+        <tr>
+    <td> {{ item.name }}</td>
+    <td> {{ item.email }}</td>
+    <td> {{ item.phone }}</td>
+    <td> {{ item.city }}</td>
+    <td><a href="/add">Add</a></td>
+    <td><a href="/edit/{{ item.id }}">Edit</a></td>
+    <td><a href="/delete/{{ item.id }}">Delete</a></td>
+</tr>
+{% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+
