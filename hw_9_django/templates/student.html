@@ -1,0 +1,26 @@
+<table border = "1">
+    <thead>
+        <th> Name </th>
+        <th> Email </th>
+        <th> Sex </th>
+        <th> Major </th>
+        <th> Add </th>
+        <th> Edit </th>
+        <th> Delete </th>
+    </thead>
+    <tbody>
+        {% for item in student %}
+            <tr>
+                <td> {{ item.name }} </td>
+                <td> {{ item.email }} </td>
+                <td> {{ item.sex }} </td>
+                <td> {{ item.major_id__name }} </td>
+                <td> <a href={% url 'add_student' %}>Add</a> </td>
+                <td> <a href={% url 'edit_student' id=item.id %}>Edit</a> </td>
+                <td> <a href={% url 'delete_student' id=item.id %}>Delete</a> </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br/>
+<button type="button" onclick="location.href='/'">back</button>

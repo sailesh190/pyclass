@@ -1,0 +1,20 @@
+<table border = "1">
+    <thead>
+        <th> Major </th>
+        <th> Add </th>
+        <th> Edit </th>
+        <th> Delete </th>
+    </thead>
+    <tbody>
+        {% for item in major %}
+            <tr>
+                <td> {{ item.name }} </td>
+                <td> <a href={% url 'add_major' %}>Add</a> </td>
+                <td> <a href={% url 'edit_major' id=item.id %}>Edit</a> </td>
+                <td> <a href={% url 'delete_major' id=item.id %}>Delete</a> </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br/>
+<button type="button" onclick="location.href='/'">back</button>
