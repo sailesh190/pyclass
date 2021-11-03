@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 from student import models
 from student import forms
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 def IndexPage(request):
@@ -71,3 +73,15 @@ def DeleteMajorPage(request, id):
         return redirect("/major")
     else:
         return render(request, "delete_major.html", {})
+    
+def GetTestApi(request):
+    if request.method == "GET":
+        get_data = request.GET.get("testdata")
+        return JsonResponse({"foo": "GET", "mygetdata": get_data})
+
+@csrf_exempt
+def PostTestApi(request):
+    if request.method == "POST":
+        get_data = request.GET.get("testdata")
+        post_get_data = json.loads(request.body)
+        return JsonResponse({"foo": "GET", "mygetdata": get_data, "bodymsg": post_get_data})
